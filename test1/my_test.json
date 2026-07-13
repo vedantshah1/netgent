@@ -1,0 +1,49 @@
+[
+    {
+        "name": "On Browser Home Page",
+        "description": "Start the process from a fresh browser tab.",
+        "triggers": [
+            "If the current URL is chrome://new-tab-page/"
+        ],
+        "actions": [
+            "Navigate to https://en.wikipedia.org/"
+        ]
+    },
+    {
+        "name": "On Wikipedia Homepage",
+        "description": "Search for a specific topic on Wikipedia.",
+        "triggers": [
+            "If the current URL contains en.wikipedia.org/wiki/Main_Page",
+            "If a search box with placeholder 'Search Wikipedia' is visible"
+        ],
+        "actions": [
+            "Click the search box",
+            "Type 'Bezier curve' into the search box",
+            "Press Enter"
+        ]
+    },
+    {
+        "name": "On Search Results Or Article Page",
+        "description": "Confirm the search navigated to the Bezier curve article page.",
+        "triggers": [
+            "If the current URL contains en.wikipedia.org/wiki/B",
+            "If the current URL contains en.wikipedia.org/wiki/Special:Search"
+        ],
+        "actions": [
+            "If on a search results list, click the first search result link",
+            "Scroll down 600 pixels on the article page"
+        ]
+    },
+    {
+        "name": "Article Loaded And Scrolled",
+        "description": "The target article is open and has been scrolled, confirming successful load.",
+        "triggers": [
+            "If the current URL contains en.wikipedia.org/wiki/",
+            "If the page has scrolled away from the top"
+        ],
+        "actions": [
+            "Terminate: task complete, article reached and scrolled"
+        ],
+        "end_state": "Action completed"
+    }
+]

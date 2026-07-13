@@ -1,0 +1,113 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the process from a fresh browser tab.",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://en.wikipedia.org/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Successfully navigated to 'https://en.wikipedia.org/' as per Step 1 of the task instruction. Terminating as per Step 2."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Wikipedia Homepage",
+    "description": "Search for a specific topic on Wikipedia.",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://en.wikipedia.org/wiki/Main_Page"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h1.html-heading.mw-html-heading[id=\"Welcome_to_Wikipedia\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.cdx-button.cdx-button--fake-button.cdx-button--fake-button--enabled.cdx-button--weight-quiet.cdx-button--icon-only.search-toggle[href=\"/wiki/Special:Search\"][title*=\"Search Wikipedia [alt-f]\"]",
+          "x": 649.734375,
+          "y": 178.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "Bezier curve",
+          "by": "css selector",
+          "selector": "input.cdx-text-input__input[title*=\"Search Wikipedia [alt-f]\"][placeholder*=\"Search Wikipedia\"][aria-label*=\"Search Wikipedia\"][name=\"search\"][role=\"combobox\"][autocomplete=\"off\"][type=\"search\"]",
+          "x": 334.015625,
+          "y": 175.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The search for 'Bezier curve' was successfully completed, and the corresponding article page is displayed. Terminating as per the Global Plan and task instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Search Results Or Article Page",
+    "description": "Confirm the search navigated to the Bezier curve article page.",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://en.wikipedia.org/wiki/B%C3%A9zier_curve"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 600
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Successfully scrolled down 600 pixels on the current article page as per Step 1 of the task instruction. Terminating immediately as per Step 2 of the task instruction and the Global Plan."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

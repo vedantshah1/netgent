@@ -1,0 +1,23 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the process from a fresh browser tab.",
+    "checks": [],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://en.wikipedia.org/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Successfully navigated to the URL 'https://en.wikipedia.org/' as per Step 1 of the Global Plan. Terminating as per Step 2."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

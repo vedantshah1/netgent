@@ -128,12 +128,12 @@ def create_llm(api_keys: Dict[str, str]) -> Any:
     # Try Google Generative AI first
     if 'google_api_key' in api_keys:
         return ChatGoogleGenerativeAI(
-            model="gemini-2.0-flash-exp", 
+            model="gemini-2.5-flash", 
             temperature=0.2, 
             api_key=api_keys['google_api_key']
         )
     
-    return ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2)
+    return ChatVertexAI(model="gemini-2.5-flash", temperature=0.2)
 
 
 def setup_browser_cache(credentials: Dict[str, str]) -> Optional[str]:
