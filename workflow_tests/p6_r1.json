@@ -1,0 +1,63 @@
+{
+  "sentence": "go to the-internet.herokuapp.com/dynamic_loading/2, start the loading, wait until the hidden text finishes loading, then read it",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://the-internet.herokuapp.com/dynamic_loading/2"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Dynamic Loading Page",
+      "description": "Locate and click the 'Start' button to initiate the dynamic load.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/dynamic_loading/2",
+        "If a button with text 'Start' is visible"
+      ],
+      "actions": [
+        "Click the button with text 'Start'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Waiting for Content",
+      "description": "Wait for the hidden content to finish loading and become visible.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/dynamic_loading/2",
+        "If a div with id 'loading' is visible",
+        "If the text 'Hello World!' is NOT visible"
+      ],
+      "actions": [],
+      "end_state": ""
+    },
+    {
+      "name": "Content Loaded",
+      "description": "Confirm the hidden text has loaded and read it.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/dynamic_loading/2",
+        "If the text 'Hello World!' is visible"
+      ],
+      "actions": [
+        "Read the text 'Hello World!'"
+      ],
+      "end_state": "Hidden text 'Hello World!' read."
+    }
+  ],
+  "issues": [
+    {
+      "level": "INFO",
+      "state": "Waiting for Content",
+      "message": "Empty actions with a wait/verification-sounding name -- looks like an intentional 'sit here until something external changes' state. Confirm that's what you meant."
+    },
+    {
+      "level": "WARN",
+      "state": "Content Loaded",
+      "message": "Last state's actions don't mention 'Terminate'. NetGent's web agent needs an explicit terminate instruction to stop cleanly."
+    }
+  ]
+}

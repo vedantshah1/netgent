@@ -1,0 +1,4 @@
+{"type": "run_start", "run_id": "20260721_060216_719f88", "ts": 1784613736.706752, "iso": "2026-07-21T06:02:16.706756", "python": "3.11.15", "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.41", "meta": {"experiment": "thinking_budget", "thinking_budget": 512, "model": "gemini-2.5-flash", "browser": false}}
+{"type": "run_end", "run_id": "20260721_060216_719f88", "ts": 1784613908.5035174, "iso": "2026-07-21T06:05:08.503520", "n_llm_calls": 36, "n_attempts": 36, "summary": {}}
+{"type": "run_start", "run_id": "20260721_070010_42a3bf", "ts": 1784617210.438361, "iso": "2026-07-21T07:00:10.438363", "python": "3.11.15", "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.41", "meta": {"experiment": "thinking_budget", "thinking_budget": 512, "model": "gemini-2.5-flash", "browser": false}}
+{"type": "run_end", "run_id": "20260721_070010_42a3bf", "ts": 1784617365.0911145, "iso": "2026-07-21T07:02:45.091117", "n_llm_calls": 36, "n_attempts": 36, "summary": {}}

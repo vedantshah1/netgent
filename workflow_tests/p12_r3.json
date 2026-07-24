@@ -1,0 +1,53 @@
+{
+  "sentence": "go to a news site, accept the cookie consent banner if one appears, then open the top headline",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab and navigate to a news site (BBC News).",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://www.bbc.com/news"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Handle Cookie Consent",
+      "description": "Accept the cookie consent banner if it appears on the news site.",
+      "triggers": [
+        "If the current URL contains bbc.com/news",
+        "If a button with text 'Yes, I agree' is visible"
+      ],
+      "actions": [
+        "Click the button with text 'Yes, I agree'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On News Homepage",
+      "description": "Identify and click the top headline on the news site.",
+      "triggers": [
+        "If the current URL is https://www.bbc.com/news",
+        "If an element with data-entityid='container-top-stories' is visible"
+      ],
+      "actions": [
+        "Click the first link with class 'gs-c-promo-heading__title' that is a descendant of an element with data-entityid='container-top-stories'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Headline Article Page",
+      "description": "Confirm that the top headline article has been successfully opened.",
+      "triggers": [
+        "If the current URL contains bbc.com/news/",
+        "If an h1 element is visible"
+      ],
+      "actions": [
+        "Terminate: The top headline article is open"
+      ],
+      "end_state": "Top headline opened"
+    }
+  ],
+  "issues": []
+}

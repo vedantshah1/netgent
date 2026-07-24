@@ -1,0 +1,58 @@
+{
+  "sentence": "go to en.wikipedia.org, search for a topic, and if a disambiguation page appears pick the first listed meaning, otherwise just read the article",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://en.wikipedia.org/"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Wikipedia Homepage",
+      "description": "Search for a generic topic on Wikipedia.",
+      "triggers": [
+        "If the current URL contains en.wikipedia.org/wiki/Main_Page",
+        "If a search box with placeholder 'Search Wikipedia' is visible"
+      ],
+      "actions": [
+        "Click the search box",
+        "Type 'topic' into the search box",
+        "Press Enter"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Disambiguation Page",
+      "description": "If the search leads to a disambiguation page, click the first listed meaning.",
+      "triggers": [
+        "If the current URL contains en.wikipedia.org/wiki/",
+        "If the page title contains '(disambiguation)'",
+        "If text 'may refer to:' is visible"
+      ],
+      "actions": [
+        "Click the first link in the main content area"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Article Page",
+      "description": "The search led directly to an article, or a disambiguation link was followed. The task is complete.",
+      "triggers": [
+        "If the current URL contains en.wikipedia.org/wiki/",
+        "If a main article heading (h1) is visible",
+        "If the page title does NOT contain '(disambiguation)'",
+        "If text 'may refer to:' is NOT visible"
+      ],
+      "actions": [
+        "Terminate: task complete, article reached"
+      ],
+      "end_state": "Action completed"
+    }
+  ],
+  "issues": []
+}

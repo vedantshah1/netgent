@@ -1,0 +1,35 @@
+[
+  {
+    "sentence": "go to saucedemo.com, log in with username standard_user and password secret_sauce, add the Sauce Labs Backpack and the Sauce Labs Bike Light to the cart, open the shopping cart, click checkout, enter first name Test, last name User, postal code 12345, continue, and then finish the order",
+    "workflow": [
+{
+        "name": "Fresh Tab",
+        "description": "Any blank starting page.",
+        "triggers": [
+          "If the current URL is chrome://new-tab-page/"
+        ],
+        "actions": [
+          "Navigate to https://www.saucedemo.com/"
+        ]
+      },
+	],
+    "authoring_minutes": null,
+    "iteration_count": null,
+    "authoring_status": "not_started",
+    "success": {
+      "type": "text_contains",
+      "value": "Thank you for your order"
+    }
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/login, log in with username tomsmith and password SuperSecretPassword!, click Logout, then go to the-internet.herokuapp.com/dynamic_controls, click the Enable button, wait for the input field to become enabled, and type hello into it",
+    "workflow": [],
+    "authoring_minutes": null,
+    "iteration_count": null,
+    "authoring_status": "not_started",
+    "success": {
+      "type": "text_contains",
+      "value": "It's enabled"
+    }
+  }
+]

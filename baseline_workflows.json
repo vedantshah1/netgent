@@ -1,0 +1,182 @@
+[
+  {
+    "sentence": "go to saucedemo.com, log in with username standard_user and password secret_sauce, add the Sauce Labs Backpack and the Sauce Labs Bike Light to the cart, open the shopping cart, click checkout, enter first name Test, last name User, postal code 12345, continue, and then finish the order",
+    "workflow": [
+      {
+        "name": "Fresh Tab",
+        "description": "Any blank starting page.",
+        "triggers": [
+          "If the current URL is chrome://new-tab-page/",
+          "If the current URL is about:blank",
+          "If the current URL starts with data:"
+        ],
+        "actions": [
+          "Navigate to https://www.saucedemo.com/"
+        ]
+      },
+      {
+        "name": "Login Form",
+        "description": "Credential entry.",
+        "triggers": [
+          "If the current URL is https://www.saucedemo.com/"
+        ],
+        "actions": [
+          "Type 'standard_user' into the input field with id 'user-name'",
+          "Type 'secret_sauce' into the input field with id 'password'",
+          "Click the button with id 'login-button'"
+        ]
+      },
+      {
+        "name": "Add to cart",
+        "description": "Logged in; now start adding things to cart.",
+        "triggers": [
+          "If the current URL contains 'inventory.html'",
+          "If the button with id 'add-to-cart-sauce-labs-backpack' is visible"
+        ],
+        "actions": [
+          "Click the button with id 'add-to-cart-sauce-labs-backpack'",
+          "Click the button with id 'add-to-cart-sauce-labs-bike-light'"
+        ]
+      },
+      {
+        "name": "Open the cart",
+        "description": "Added items to cart; now going to checkout",
+        "triggers": [
+          "If the current URL contains 'inventory.html'",
+          "If the button with id 'remove-sauce-labs-backpack' is visible"
+        ],
+        "actions": [
+          "Click the link with class 'shopping_cart_link'"
+        ]
+      },
+      {
+        "name": "Checking out",
+        "description": "Viewing the cart; now checking out",
+        "triggers": [
+          "If the current URL contains 'cart.html'"
+        ],
+        "actions": [
+          "Click the button with id 'checkout'"
+        ]
+      },
+      {
+        "name": "Entering checkout information",
+        "description": "In checkout process; now entering information",
+        "triggers": [
+          "If the current URL contains 'checkout-step-one.html'"
+        ],
+        "actions": [
+          "Type 'Test' into the input field with id 'first-name'",
+          "Type 'User' into the input field with id 'last-name'",
+          "Type '12345' into the input field with id 'postal-code'",
+          "Click the button with id 'continue'"
+        ]
+      },
+      {
+        "name": "Finishing Checkout",
+        "description": "Entered information; now finishing checkout",
+        "triggers": [
+          "If the current URL contains 'checkout-step-two.html'"
+        ],
+        "actions": [
+          "Click the button with id 'finish'"
+        ]
+      },
+      {
+        "name": "Checkout confirmed",
+        "description": "Confirmation text present.",
+        "triggers": [
+          "If the current URL contains 'checkout-complete.html'"
+        ],
+        "actions": [
+          "Terminate: Reached final checkout page."
+        ],
+        "end_state": "Checkout confirmed"
+      }
+    ],
+    "authoring_minutes": 450.0,
+    "iteration_count": null,
+    "authoring_status": "not_started",
+    "success": {
+      "type": "text_contains",
+      "value": "Thank you for your order"
+    }
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/login, log in with username tomsmith and password SuperSecretPassword!, click Logout, then go to the-internet.herokuapp.com/dynamic_controls, click the Enable button, wait for the input field to become enabled, and type hello into it",
+    "workflow": [
+      {
+        "name": "Fresh Tab",
+        "description": "Any blank starting page.",
+        "triggers": [
+          "If the current URL is chrome://new-tab-page/",
+          "If the current URL is about:blank",
+          "If the current URL starts with data:"
+        ],
+        "actions": [
+          "Navigate to https://the-internet.herokuapp.com/login"
+        ]
+      },
+      {
+        "name": "Login Form",
+        "description": "Credential entry on the login page.",
+        "triggers": [
+          "If the input field with id 'username' is visible"
+        ],
+        "actions": [
+          "Type 'tomsmith' into the input field with id 'username'",
+          "Type 'SuperSecretPassword!' into the input field with id 'password'",
+          "Click the button with type 'submit'"
+        ]
+      },
+      {
+        "name": "Log out and go to dynamic controls",
+        "description": "Logged in. Click Logout, then immediately navigate to dynamic_controls so the workflow never sits on the post-logout login page.",
+        "triggers": [
+          "If the current URL contains '/secure'"
+        ],
+        "actions": [
+          "Click the link with href '/logout'",
+          "Navigate to https://the-internet.herokuapp.com/dynamic_controls"
+        ]
+      },
+      {
+        "name": "Clicking enable button",
+        "description": "On dynamic controls; the input is still disabled.",
+        "triggers": [
+          "If the current URL contains '/dynamic_controls'"
+        ],
+        "actions": [
+          "Click the button in the form with aria-label 'enable', which is the second button on the page"
+        ]
+      },
+      {
+        "name": "Waiting for input to enable",
+        "description": "Async gap while the input is being enabled. No actions on purpose.",
+        "triggers": [
+          "If the text 'Wait for it...' is visible"
+        ],
+        "actions": []
+      },
+      {
+        "name": "Typing hello",
+        "description": "Input is enabled; type into it and finish.",
+        "triggers": [
+          "If the text 'enabled!' is visible"
+        ],
+        "actions": [
+          "Type 'hello' into the input field with type 'text'",
+          "Terminate: Typed hello into the enabled textbox."
+        ],
+        "end_state": "Action completed"
+      }
+    ],
+    "authoring_minutes": 72.7,
+    "iteration_count": 13,
+    "authoring_status": "gave_up",
+    "success": {
+      "type": "text_contains",
+      "value": "It's enabled!"
+    }
+  }
+]

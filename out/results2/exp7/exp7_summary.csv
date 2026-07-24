@@ -1,0 +1,4 @@
+condition,n,task_success_rate,struct_valid_rate,mean_attempts,mean_states,mean_gen_latency_s,mean_input_tokens,mean_output_tokens,total_authoring_minutes,mean_run_latency_s
+baseline,2,0.0,1.0,13,6,0.0,0,0,145.4,217.5526430606842
+planner,4,0.0,1.0,1,7.5,7.593500000000001,1182,1849,0.0,553.7082750201225
+planner+heal,4,0.0,0.75,3,7.25,48.6365,4722.75,10873.75,0.0,127.85365152359009

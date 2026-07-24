@@ -1,0 +1,182 @@
+[
+  {
+    "name": "Start Browser and Go to Google Scholar",
+    "description": "Opens a new browser tab and navigates to Google Scholar to begin searching for the paper. This state is triggered when a new, blank tab is opened.",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://scholar.google.com/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Successfully navigated to 'https://scholar.google.com/' as per Step 1 of the Task Instruction. Terminating immediately as per Step 2 of the Task Instruction."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Search for the Target Paper",
+    "description": "Enters the full title of the specified paper into the Google Scholar search bar and initiates the search.",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://scholar.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Articles"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "label[for=\"gs_hp_sdt1\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "NetGent: Agent-Based Automation of Network Application Workflows",
+          "by": "css selector",
+          "selector": "input.gs_in_txt.gs_in_ac[type=\"text\"][name=\"q\"][id=\"gs_hdr_tsi\"][autocomplete=\"off\"][aria-label=\"Search\"]",
+          "x": 477.0,
+          "y": 389.15625
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The search query has been typed and submitted, and the search results are displayed. As per the task instructions and the Global Plan, the task is now complete and should be terminated immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Click Target Paper from Search Results",
+    "description": "Locates and clicks the search result link that contains the paper's title, allowing for minor variations. This state expects to be on the Google Scholar search results page.",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=NetGent%3A+Agent-Based+Automation+of+Network+Application+Workflows&btnG="
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "NetGent: Agent-Based Automation of Network Application Workflows"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a[id=\"Dsc-mztCmSoJ\"][href=\"https://arxiv.org/abs/2509.00625\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a[id=\"Dsc-mztCmSoJ\"][href=\"https://arxiv.org/abs/2509.00625\"]",
+          "x": 301.8125,
+          "y": 268.5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Step 1 of the task instruction, which was to click the link containing 'NetGent: Agent-Based Automation of Network Application Workflows', has been successfully completed. As per Step 2 of the task instruction, the task must be terminated immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Scroll to Citations Section",
+    "description": "After navigating to the paper's page (off Google Scholar), scrolls down to reveal the references or citations section. This assumes the paper page is loaded and the target paper's title is visible.",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://arxiv.org/abs/2509.00625"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "NetGent: Agent-Based Automation of Network Application Workflows"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 1500
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Successfully scrolled down the page by 1500 pixels as per Step 1 of the Task Instruction. Terminating immediately as per Step 2 of the Task Instruction."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Follow 'Human Imitation' Citation",
+    "description": "Identifies and clicks the citation link related to 'human imitation' within the references section of the paper. This state assumes the NetGent paper page is loaded, the citations are visible, and the link is present.",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://arxiv.org/abs/2509.00625"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The link containing the text 'human imitation' was not found on the current page. As per Step 1 of the Global Plan, if the required element is not found, the task cannot be completed. Therefore, as per the instructions, the task must be terminated immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "sentence": "go to the-internet.herokuapp.com/nested_frames, read the text inside the middle frame",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://the-internet.herokuapp.com/nested_frames"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Nested Frames Page",
+      "description": "Identify the nested frames and read the text from the middle frame.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/nested_frames"
+      ],
+      "actions": [
+        "Read text from the frame with name 'frame-middle'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Text Read From Middle Frame",
+      "description": "The text from the middle frame has been successfully read.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/nested_frames"
+      ],
+      "actions": [
+        "Terminate: text from middle frame read"
+      ],
+      "end_state": "Text from middle frame read"
+    }
+  ],
+  "issues": []
+}

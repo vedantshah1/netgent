@@ -1,0 +1,688 @@
+[
+  {
+    "sentence": "go to saucedemo.com, log in with username standard_user and password secret_sauce, add the Sauce Labs Backpack and the Sauce Labs Bike Light to the cart, open the shopping cart, click checkout, enter first name Test, last name User, postal code 12345, continue, and then finish the order",
+    "success_condition": {
+      "type": "text_contains",
+      "value": "Thank you for your order"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/",
+              "If the current URL is about:blank",
+              "If the current URL starts with data:",
+              "If no page has been loaded yet"
+            ],
+            "actions": [
+              "Navigate to https://www.saucedemo.com/"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Login Page",
+            "description": "Enter login credentials and submit the form.",
+            "triggers": [
+              "If the current URL contains saucedemo.com",
+              "If an input field with placeholder 'Username' is visible"
+            ],
+            "actions": [
+              "Type 'standard_user' into the input field with placeholder 'Username'",
+              "Type 'secret_sauce' into the input field with placeholder 'Password'",
+              "Click the button with text 'Login'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Products Page",
+            "description": "Add specified items to the cart and then proceed to the cart.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/inventory.html",
+              "If a div with text 'Products' is visible"
+            ],
+            "actions": [
+              "Click the button with text 'Add to cart' for the item 'Sauce Labs Backpack'",
+              "Click the button with text 'Add to cart' for the item 'Sauce Labs Bike Light'",
+              "Click the shopping cart icon"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Cart Page",
+            "description": "Proceed from the cart to the checkout process.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/cart.html",
+              "If a div with text 'Your Cart' is visible"
+            ],
+            "actions": [
+              "Click the button with text 'Checkout'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Checkout Step One Page",
+            "description": "Enter shipping information and continue to the next step.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/checkout-step-one.html",
+              "If an input field with placeholder 'First Name' is visible"
+            ],
+            "actions": [
+              "Type 'Test' into the input field with placeholder 'First Name'",
+              "Type 'User' into the input field with placeholder 'Last Name'",
+              "Type '12345' into the input field with placeholder 'Zip/Postal Code'",
+              "Click the button with text 'Continue'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Checkout Step Two Page",
+            "description": "Confirm the order details and finish the purchase.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/checkout-step-two.html",
+              "If a div with text 'Checkout: Overview' is visible"
+            ],
+            "actions": [
+              "Click the button with text 'Finish'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Checkout Complete Page",
+            "description": "Verify that the order has been successfully placed.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/checkout-complete.html",
+              "If a div with text 'Checkout: Complete!' is visible"
+            ],
+            "actions": [
+              "Terminate: Order successfully placed"
+            ],
+            "end_state": "Order completed"
+          }
+        ],
+        "latency_s": 4.728405475616455
+      },
+      "lint": {
+        "issues": [],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": false,
+        "success_detail": "page text contains 'Thank you for your order'? False  (url='https://www.saucedemo.com/')",
+        "final_url": "https://www.saucedemo.com/",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 2,
+        "task_success": false,
+        "success_detail": "page text contains 'Thank you for your order'? False  (url='https://www.saucedemo.com/inventory.html')",
+        "final_url": "https://www.saucedemo.com/inventory.html",
+        "stopgap_failed": true,
+        "stopgap_class": "TIMEOUT"
+      },
+      {
+        "attempt": 3,
+        "task_success": false,
+        "success_detail": "page text contains 'Thank you for your order'? False  (url='https://www.saucedemo.com/inventory.html')",
+        "final_url": "https://www.saucedemo.com/inventory.html",
+        "stopgap_failed": true,
+        "stopgap_class": "TIMEOUT"
+      }
+    ],
+    "final_task_success": false
+  },
+  {
+    "sentence": "go to saucedemo.com, log in with username standard_user and password secret_sauce, sort the products by price from low to high, add the two cheapest products to the cart, open the cart, remove one of them, and confirm exactly one item remains",
+    "success_condition": {
+      "type": "text_contains",
+      "value": "1"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/",
+              "If the current URL is about:blank",
+              "If the current URL starts with data:",
+              "If no page has been loaded yet"
+            ],
+            "actions": [
+              "Navigate to https://www.saucedemo.com/"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Login Page",
+            "description": "Log in with the provided credentials.",
+            "triggers": [
+              "If the current URL contains saucedemo.com",
+              "If an input field with placeholder 'Username' is visible"
+            ],
+            "actions": [
+              "Type 'standard_user' into the input field with placeholder 'Username'",
+              "Type 'secret_sauce' into the input field with placeholder 'Password'",
+              "Click the button with text 'Login'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Products Page - Sort",
+            "description": "Sort the products by price from low to high.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/inventory.html",
+              "If an element with text 'Products' is visible"
+            ],
+            "actions": [
+              "Click the dropdown with class 'product_sort_container'",
+              "Select option 'Price (low to high)' from the dropdown with class 'product_sort_container'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Products Page - Add to Cart",
+            "description": "Add the two cheapest products to the cart after sorting.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/inventory.html",
+              "If the dropdown with class 'product_sort_container' has 'Price (low to high)' selected"
+            ],
+            "actions": [
+              "Click the 'Add to cart' button for the first product in the list",
+              "Click the 'Add to cart' button for the second product in the list"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Products Page - Open Cart",
+            "description": "Open the shopping cart.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/inventory.html",
+              "If the shopping cart icon shows '2' items"
+            ],
+            "actions": [
+              "Click the shopping cart icon"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Cart Page - Remove Item",
+            "description": "Remove one of the items from the cart.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/cart.html",
+              "If an element with text 'Your Cart' is visible"
+            ],
+            "actions": [
+              "Click the 'Remove' button for the first item in the cart"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Cart Page - Confirm One Item",
+            "description": "Confirm that exactly one item remains in the cart.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/cart.html",
+              "If the number of items in the cart is 1"
+            ],
+            "actions": [
+              "Terminate: Exactly one item remains in the cart."
+            ],
+            "end_state": "One item in cart"
+          }
+        ],
+        "latency_s": 7.378437519073486
+      },
+      "lint": {
+        "issues": [],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": false,
+        "success_detail": "page text contains '1'? False  (url='https://www.saucedemo.com/')",
+        "final_url": "https://www.saucedemo.com/",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 2,
+        "task_success": false,
+        "success_detail": "page text contains '1'? False  (url='https://www.saucedemo.com/')",
+        "final_url": "https://www.saucedemo.com/",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 3,
+        "task_success": true,
+        "success_detail": "page text contains '1'? True  (url='https://www.saucedemo.com/inventory.html')",
+        "final_url": "https://www.saucedemo.com/inventory.html",
+        "stopgap_failed": true,
+        "stopgap_class": "UNKNOWN"
+      }
+    ],
+    "final_task_success": true
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/login, log in with username tomsmith and password SuperSecretPassword!, click Logout, then go to the-internet.herokuapp.com/dynamic_controls, click the Enable button, wait for the input field to become enabled, and type hello into it",
+    "success_condition": {
+      "type": "text_contains",
+      "value": "It's enabled"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "Start and Navigate to Login",
+            "description": "Starts from a fresh tab and navigates to the login page on the-internet.herokuapp.com.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/",
+              "If the current URL is about:blank",
+              "If the current URL starts with data:",
+              "If no page has been loaded yet"
+            ],
+            "actions": [
+              "Navigate to https://the-internet.herokuapp.com/login"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Login Page",
+            "description": "Identifies the login page and attempts to log in with the provided credentials.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/login",
+              "If a text input with name 'username' is visible"
+            ],
+            "actions": [
+              "Type 'tomsmith' into the text input with name 'username'",
+              "Type 'SuperSecretPassword!' into the password input with name 'password'",
+              "Click the button with text 'Login'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Secure Area After Login",
+            "description": "Confirms successful login to the secure area and clicks the 'Logout' button.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/secure",
+              "If a button with text 'Logout' is visible"
+            ],
+            "actions": [
+              "Click the button with text 'Logout'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "After Logout, Navigate to Dynamic Controls",
+            "description": "After logging out, navigates to the dynamic controls page.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/login",
+              "If a div with class 'flash success' and text 'You logged out of the secure area!' is visible"
+            ],
+            "actions": [
+              "Navigate to https://the-internet.herokuapp.com/dynamic_controls"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Dynamic Controls Page, Click Enable",
+            "description": "Identifies the dynamic controls page and clicks the 'Enable' button.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/dynamic_controls",
+              "If a button with text 'Enable' is visible"
+            ],
+            "actions": [
+              "Click the button with text 'Enable'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "Waiting for Input Field to Enable",
+            "description": "Waits for the input field to become enabled after the 'Enable' button was clicked.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/dynamic_controls",
+              "If a button with text 'Disable' is visible",
+              "If the text input with id 'text' is disabled"
+            ],
+            "actions": [],
+            "end_state": ""
+          },
+          {
+            "name": "Input Field Enabled, Type 'hello'",
+            "description": "Detects that the input field is now enabled and types 'hello' into it.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/dynamic_controls",
+              "If the text input with id 'text' is enabled"
+            ],
+            "actions": [
+              "Type 'hello' into the text input with id 'text'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "Task Complete",
+            "description": "Confirms 'hello' has been typed into the enabled input field and terminates the workflow.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/dynamic_controls",
+              "If the text input with id 'text' has value 'hello'"
+            ],
+            "actions": [
+              "Terminate: Successfully typed 'hello' into the enabled field."
+            ],
+            "end_state": "Action completed"
+          }
+        ],
+        "latency_s": 8.999653339385986
+      },
+      "lint": {
+        "issues": [
+          {
+            "level": "INFO",
+            "state": "Waiting for Input Field to Enable",
+            "message": "Empty actions with a wait/verification-sounding name -- looks like an intentional 'sit here until something external changes' state. Confirm that's what you meant."
+          }
+        ],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": false,
+        "success_detail": "page text contains \"It's enabled\"? False  (url='https://the-internet.herokuapp.com/login')",
+        "final_url": "https://the-internet.herokuapp.com/login",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 2,
+        "task_success": false,
+        "success_detail": "page text contains \"It's enabled\"? False  (url='https://the-internet.herokuapp.com/login')",
+        "final_url": "https://the-internet.herokuapp.com/login",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 3,
+        "task_success": false,
+        "success_detail": "page text contains \"It's enabled\"? False  (url='https://the-internet.herokuapp.com/login')",
+        "final_url": "https://the-internet.herokuapp.com/login",
+        "stopgap_failed": true,
+        "stopgap_class": "TIMEOUT"
+      }
+    ],
+    "final_task_success": false
+  },
+  {
+    "sentence": "go to automationexercise.com, search for 'dress', add the first two products in the results to your cart, view the cart, and confirm both products are listed",
+    "success_condition": {
+      "type": "url_contains",
+      "value": "/view_cart"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab and navigate to automationexercise.com.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/",
+              "If the current URL is about:blank",
+              "If the current URL starts with data:",
+              "If no page has been loaded yet"
+            ],
+            "actions": [
+              "Navigate to https://automationexercise.com/"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Automation Exercise Homepage",
+            "description": "Locate the search input and search for 'dress'.",
+            "triggers": [
+              "If the current URL contains automationexercise.com",
+              "If an input field with placeholder 'Search Product' is visible"
+            ],
+            "actions": [
+              "Type 'dress' into the input field with placeholder 'Search Product'",
+              "Click the button with text 'Search'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Search Results Page",
+            "description": "Add the first two 'dress' products to the cart and then proceed to view the cart.",
+            "triggers": [
+              "If the current URL contains /search_products",
+              "If the heading 'SEARCHED PRODUCTS' is visible"
+            ],
+            "actions": [
+              "Hover over the first product item in the results list",
+              "Click the 'Add to cart' button that appears on hover for the first product",
+              "Click the 'Continue Shopping' button in the popup modal",
+              "Hover over the second product item in the results list",
+              "Click the 'Add to cart' button that appears on hover for the second product",
+              "Click the 'View Cart' button in the popup modal"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Cart Page",
+            "description": "Verify that both 'dress' products are listed in the shopping cart.",
+            "triggers": [
+              "If the current URL contains /view_cart",
+              "If the heading 'Shopping Cart' is visible",
+              "If at least two product rows are visible in the cart table"
+            ],
+            "actions": [
+              "Check if the text 'Dress' appears at least twice in the product names within the cart table",
+              "Terminate: Both 'dress' products confirmed in cart"
+            ],
+            "end_state": "Both 'dress' products confirmed in cart."
+          }
+        ],
+        "latency_s": 9.800841569900513
+      },
+      "lint": {
+        "issues": [],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": false,
+        "success_detail": "final_url='https://automationexercise.com/' contains '/view_cart'? False",
+        "final_url": "https://automationexercise.com/",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 2,
+        "task_success": false,
+        "success_detail": "final_url='https://automationexercise.com/' contains '/view_cart'? False",
+        "final_url": "https://automationexercise.com/",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 3,
+        "task_success": false,
+        "success_detail": "success-check raised: HTTPConnectionPool(host='localhost', port=58641): Max retries exceeded with url: /session/54c251e4786700c528dc6c7f94284344/url (Caused by ReadTimeoutError(\"HTTPConnectionPool(host='localhost', port=58641): Read timed out. (read timeout=120)\"))",
+        "final_url": "",
+        "stopgap_failed": true,
+        "stopgap_class": "TIMEOUT"
+      }
+    ],
+    "final_task_success": false
+  },
+  {
+    "sentence": "go to saucedemo.com, log in with username standard_user and password secret_sauce, open the Sauce Labs Fleece Jacket product page, add it to the cart from that page, go back to the products list, open the shopping cart, click checkout, and fill in first name Test, last name User, postal code 12345",
+    "success_condition": {
+      "type": "url_contains",
+      "value": "checkout-step-two"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/",
+              "If the current URL is about:blank",
+              "If the current URL starts with data:",
+              "If no page has been loaded yet"
+            ],
+            "actions": [
+              "Navigate to https://www.saucedemo.com/"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Login Page",
+            "description": "Log in to the application with the provided credentials.",
+            "triggers": [
+              "If the current URL contains saucedemo.com",
+              "If an input field with placeholder 'Username' is visible"
+            ],
+            "actions": [
+              "Type 'standard_user' into the input field with placeholder 'Username'",
+              "Type 'secret_sauce' into the input field with placeholder 'Password'",
+              "Click the button with text 'Login'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Products Page",
+            "description": "Locate and open the 'Sauce Labs Fleece Jacket' product page.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/inventory.html",
+              "If a div with text 'Products' is visible"
+            ],
+            "actions": [
+              "Click the link with text 'Sauce Labs Fleece Jacket'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Fleece Jacket Product Page",
+            "description": "Add the 'Sauce Labs Fleece Jacket' to the cart.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/inventory-item.html?id=5",
+              "If a button with text 'Add to cart' is visible"
+            ],
+            "actions": [
+              "Click the button with text 'Add to cart'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Fleece Jacket Product Page (After Add to Cart)",
+            "description": "Go back to the products list after adding the item to the cart.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/inventory-item.html?id=5",
+              "If a button with text 'Remove' is visible"
+            ],
+            "actions": [
+              "Click the button with text 'Back to products'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Products Page (After Returning)",
+            "description": "Open the shopping cart from the products list.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/inventory.html",
+              "If a div with text 'Products' is visible"
+            ],
+            "actions": [
+              "Click the link with class 'shopping_cart_link'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Shopping Cart Page",
+            "description": "Proceed to checkout from the shopping cart.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/cart.html",
+              "If a div with text 'Your Cart' is visible"
+            ],
+            "actions": [
+              "Click the button with text 'Checkout'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Checkout Your Information Page",
+            "description": "Fill in the customer's first name, last name, and postal code.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/checkout-step-one.html",
+              "If an input field with placeholder 'First Name' is visible"
+            ],
+            "actions": [
+              "Type 'Test' into the input field with placeholder 'First Name'",
+              "Type 'User' into the input field with placeholder 'Last Name'",
+              "Type '12345' into the input field with placeholder 'Zip/Postal Code'",
+              "Click the button with text 'Continue'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Checkout Overview Page",
+            "description": "Confirm that the checkout information has been successfully entered.",
+            "triggers": [
+              "If the current URL contains saucedemo.com/checkout-step-two.html",
+              "If a div with text 'Checkout: Overview' is visible"
+            ],
+            "actions": [
+              "Terminate: Checkout information filled."
+            ],
+            "end_state": "Checkout information filled."
+          }
+        ],
+        "latency_s": 9.549230337142944
+      },
+      "lint": {
+        "issues": [],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": false,
+        "success_detail": "final_url='https://www.saucedemo.com/' contains 'checkout-step-two'? False",
+        "final_url": "https://www.saucedemo.com/",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 2,
+        "task_success": false,
+        "success_detail": "final_url='https://www.saucedemo.com/inventory.html' contains 'checkout-step-two'? False",
+        "final_url": "https://www.saucedemo.com/inventory.html",
+        "stopgap_failed": true,
+        "stopgap_class": "UNKNOWN"
+      },
+      {
+        "attempt": 3,
+        "task_success": false,
+        "success_detail": "final_url='https://www.saucedemo.com/inventory.html' contains 'checkout-step-two'? False",
+        "final_url": "https://www.saucedemo.com/inventory.html",
+        "stopgap_failed": true,
+        "stopgap_class": "TIMEOUT"
+      }
+    ],
+    "final_task_success": false
+  }
+]

@@ -1,0 +1,68 @@
+{
+  "sentence": "go to saucedemo.com, log in with standard_user / secret_sauce, add the first two products to the cart, then open the cart",
+  "workflow": [
+    {
+      "name": "Start Browser and Navigate",
+      "description": "Begin from a fresh tab and go to Sauce Labs Demo site.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://www.saucedemo.com/"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Sauce Labs Login Page",
+      "description": "Enter credentials and log in.",
+      "triggers": [
+        "If the current URL contains saucedemo.com",
+        "If an input field with placeholder 'Username' is visible"
+      ],
+      "actions": [
+        "Type 'standard_user' into the input field with placeholder 'Username'",
+        "Type 'secret_sauce' into the input field with placeholder 'Password'",
+        "Click the button with text 'Login'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Products Inventory Page",
+      "description": "Add the first two products to the cart.",
+      "triggers": [
+        "If the current URL contains saucedemo.com/inventory.html",
+        "If a button with text 'Add to cart' is visible"
+      ],
+      "actions": [
+        "Click the first button with text 'Add to cart'",
+        "Click the second button with text 'Add to cart'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Products Added, Open Cart",
+      "description": "Navigate to the shopping cart page after adding items.",
+      "triggers": [
+        "If the current URL contains saucedemo.com/inventory.html",
+        "If a link with class 'shopping_cart_link' is visible and contains text '2'"
+      ],
+      "actions": [
+        "Click the link with class 'shopping_cart_link'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Shopping Cart Page",
+      "description": "Confirm the cart is open with the added items.",
+      "triggers": [
+        "If the current URL contains saucedemo.com/cart.html",
+        "If a div with class 'cart_item' is visible"
+      ],
+      "actions": [
+        "Terminate: Successfully added products and opened the cart"
+      ],
+      "end_state": "Cart opened with two products"
+    }
+  ],
+  "issues": []
+}

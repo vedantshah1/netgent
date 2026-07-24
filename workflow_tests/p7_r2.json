@@ -1,0 +1,53 @@
+{
+  "sentence": "go to demoqa.com/select-menu and choose 'Group 2, option 1' from the multi-level select menu",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://demoqa.com/select-menu"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Select Menu Page, Open Dropdown",
+      "description": "Locate the 'Select One' multi-level select menu and open it.",
+      "triggers": [
+        "If the current URL contains demoqa.com/select-menu",
+        "If a div with placeholder text 'Select Option' is visible"
+      ],
+      "actions": [
+        "Click the div with placeholder text 'Select Option'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Dropdown Options Visible, Select Target",
+      "description": "Select 'Group 2, option 1' from the opened dropdown list.",
+      "triggers": [
+        "If the current URL contains demoqa.com/select-menu",
+        "If an option labeled 'Group 2, option 1' is visible in a dropdown list"
+      ],
+      "actions": [
+        "Click the option labeled 'Group 2, option 1'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Option Selected And Confirmed",
+      "description": "Verify that 'Group 2, option 1' has been successfully selected.",
+      "triggers": [
+        "If the current URL contains demoqa.com/select-menu",
+        "If a div with text 'Group 2, option 1' is visible as the selected value in the 'Select Option' dropdown"
+      ],
+      "actions": [
+        "Terminate: 'Group 2, option 1' has been selected."
+      ],
+      "end_state": "Option selected"
+    }
+  ],
+  "issues": []
+}

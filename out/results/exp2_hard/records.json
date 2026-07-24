@@ -1,0 +1,414 @@
+[
+  {
+    "sentence": "go to the-internet.herokuapp.com/login, log in with username tomsmith and password SuperSecretPassword!, then click Logout and confirm you are returned to the login page",
+    "success_condition": {
+      "type": "text_contains",
+      "value": "You logged out of the secure area"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/"
+            ],
+            "actions": [
+              "Navigate to https://the-internet.herokuapp.com/login"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Login Page",
+            "description": "Enter username and password, then click the login button.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/login",
+              "If a text input with ID 'username' is visible",
+              "If a text input with ID 'password' is visible"
+            ],
+            "actions": [
+              "Type 'tomsmith' into the text input with ID 'username'",
+              "Type 'SuperSecretPassword!' into the text input with ID 'password'",
+              "Click the button with text 'Login'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Secure Area Page",
+            "description": "Confirm successful login and then click the logout button.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/secure",
+              "If text 'Welcome to the Secure Area.' is visible"
+            ],
+            "actions": [
+              "Click the button with text 'Logout'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "Returned to Login Page After Logout",
+            "description": "Confirm that the logout action successfully returned to the login page.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/login",
+              "If text 'You logged out of the secure area!' is visible"
+            ],
+            "actions": [
+              "Terminate: Successfully logged in, logged out, and confirmed return to login page"
+            ],
+            "end_state": "Logged in, logged out, and confirmed return to login page"
+          }
+        ],
+        "latency_s": 3.8194737434387207
+      },
+      "lint": {
+        "issues": [],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": false,
+        "success_detail": "page text contains 'You logged out of the secure area'? False  (url='https://the-internet.herokuapp.com/login')",
+        "final_url": "https://the-internet.herokuapp.com/login",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 2,
+        "task_success": true,
+        "success_detail": "page text contains 'You logged out of the secure area'? True  (url='https://the-internet.herokuapp.com/login')",
+        "final_url": "https://the-internet.herokuapp.com/login",
+        "stopgap_failed": true,
+        "stopgap_class": "TIMEOUT"
+      }
+    ],
+    "final_task_success": true
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/dynamic_controls, click the Remove button to remove the checkbox, and wait for confirmation that it is gone",
+    "success_condition": {
+      "type": "text_contains",
+      "value": "It's gone"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/"
+            ],
+            "actions": [
+              "Navigate to https://the-internet.herokuapp.com/dynamic_controls"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Dynamic Controls Page",
+            "description": "Identify the dynamic controls page and initiate checkbox removal.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/dynamic_controls",
+              "If a button with text 'Remove' is visible",
+              "If a checkbox with id 'checkbox' is visible"
+            ],
+            "actions": [
+              "Click the button with text 'Remove'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "Checkbox Removed Confirmation",
+            "description": "Confirm that the checkbox has been removed and the confirmation message is displayed.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/dynamic_controls",
+              "If a button with text 'Add' is visible",
+              "If a div with id 'message' contains the text 'It's gone!'",
+              "If a checkbox with id 'checkbox' is NOT visible"
+            ],
+            "actions": [
+              "Terminate: Checkbox successfully removed and confirmed."
+            ],
+            "end_state": "Checkbox removed and confirmed"
+          }
+        ],
+        "latency_s": 10.946540594100952
+      },
+      "lint": {
+        "issues": [],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": true,
+        "success_detail": "page text contains \"It's gone\"? True  (url='https://the-internet.herokuapp.com/dynamic_controls')",
+        "final_url": "https://the-internet.herokuapp.com/dynamic_controls",
+        "stopgap_failed": false,
+        "stopgap_class": "UNKNOWN"
+      }
+    ],
+    "final_task_success": true
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/add_remove_elements/, click 'Add Element', and confirm a Delete button appears",
+    "success_condition": {
+      "type": "text_contains",
+      "value": "Delete"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/"
+            ],
+            "actions": [
+              "Navigate to https://the-internet.herokuapp.com/add_remove_elements/"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Add/Remove Elements Page",
+            "description": "Click the 'Add Element' button to create a new element.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/add_remove_elements/",
+              "If a button with text 'Add Element' is visible"
+            ],
+            "actions": [
+              "Click the button with text 'Add Element'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "Delete Button Appeared",
+            "description": "Verify that a 'Delete' button is now visible on the page.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/add_remove_elements/",
+              "If a button with text 'Delete' is visible"
+            ],
+            "actions": [
+              "Terminate: Delete button confirmed"
+            ],
+            "end_state": "Delete button confirmed"
+          }
+        ],
+        "latency_s": 3.52523136138916
+      },
+      "lint": {
+        "issues": [],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": false,
+        "success_detail": "page text contains 'Delete'? False  (url='https://the-internet.herokuapp.com/add_remove_elements/')",
+        "final_url": "https://the-internet.herokuapp.com/add_remove_elements/",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 2,
+        "task_success": true,
+        "success_detail": "page text contains 'Delete'? True  (url='https://the-internet.herokuapp.com/add_remove_elements/')",
+        "final_url": "https://the-internet.herokuapp.com/add_remove_elements/",
+        "stopgap_failed": true,
+        "stopgap_class": "TIMEOUT"
+      }
+    ],
+    "final_task_success": true
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/hovers, hover over the first user's image to reveal their profile link, then click it and confirm you land on their profile page",
+    "success_condition": {
+      "type": "url_regex",
+      "value": "/users/\\d"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/"
+            ],
+            "actions": [
+              "Navigate to https://the-internet.herokuapp.com/hovers"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Hovers Page",
+            "description": "Hover over the first user's image to reveal their profile link, then click it.",
+            "triggers": [
+              "If the current URL is https://the-internet.herokuapp.com/hovers",
+              "If an h3 element with text 'Hovers' is visible"
+            ],
+            "actions": [
+              "Hover over the first image with alt text 'User Avatar'",
+              "Click the link with text 'View profile'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Profile Page",
+            "description": "Confirm that the navigation landed on the user's profile page.",
+            "triggers": [
+              "If the current URL contains /users/",
+              "If an h1 element with text 'Not Found' is NOT visible"
+            ],
+            "actions": [
+              "Terminate: Successfully landed on the user's profile page."
+            ],
+            "end_state": "Profile page reached"
+          }
+        ],
+        "latency_s": 6.804046154022217
+      },
+      "lint": {
+        "issues": [],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": false,
+        "success_detail": "final_url='https://the-internet.herokuapp.com/hovers' matches //users/\\d/? False",
+        "final_url": "https://the-internet.herokuapp.com/hovers",
+        "stopgap_failed": true,
+        "stopgap_class": "TIMEOUT"
+      },
+      {
+        "attempt": 2,
+        "task_success": false,
+        "success_detail": "final_url='https://the-internet.herokuapp.com/hovers' matches //users/\\d/? False",
+        "final_url": "https://the-internet.herokuapp.com/hovers",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 3,
+        "task_success": false,
+        "success_detail": "final_url='https://the-internet.herokuapp.com/hovers' matches //users/\\d/? False",
+        "final_url": "https://the-internet.herokuapp.com/hovers",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      }
+    ],
+    "final_task_success": false
+  },
+  {
+    "sentence": "go to automationexercise.com, search for 'dress', add the first result to your cart, then view the cart",
+    "success_condition": {
+      "type": "url_contains",
+      "value": "/view_cart"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/"
+            ],
+            "actions": [
+              "Navigate to https://automationexercise.com/"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Automation Exercise Homepage",
+            "description": "Search for 'dress' using the site's search bar.",
+            "triggers": [
+              "If the current URL contains automationexercise.com",
+              "If an input field with placeholder 'Search Products' is visible"
+            ],
+            "actions": [
+              "Type 'dress' into the input field with placeholder 'Search Products'",
+              "Click the button with text 'Search'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Search Results Page",
+            "description": "Add the first product from the search results to the cart.",
+            "triggers": [
+              "If the current URL contains automationexercise.com/products",
+              "If a heading with text 'SEARCHED PRODUCTS' is visible"
+            ],
+            "actions": [
+              "Click the 'Add to cart' button for the first product shown"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "Product Added Confirmation",
+            "description": "Confirm the product was added and proceed to view the cart.",
+            "triggers": [
+              "If a modal dialog with text 'Your product has been added to cart!' is visible",
+              "If a button with text 'View Cart' is visible"
+            ],
+            "actions": [
+              "Click the button with text 'View Cart'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Cart Page",
+            "description": "Verify that the cart page is displayed with the added product.",
+            "triggers": [
+              "If the current URL contains automationexercise.com/view_cart",
+              "If a heading with text 'Shopping Cart' is visible"
+            ],
+            "actions": [
+              "Terminate: The cart page is displayed with the added product."
+            ],
+            "end_state": "Cart viewed"
+          }
+        ],
+        "latency_s": 9.396471500396729
+      },
+      "lint": {
+        "issues": [],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": false,
+        "success_detail": "final_url='https://automationexercise.com/' contains '/view_cart'? False",
+        "final_url": "https://automationexercise.com/",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 2,
+        "task_success": false,
+        "success_detail": "final_url='https://automationexercise.com/' contains '/view_cart'? False",
+        "final_url": "https://automationexercise.com/",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 3,
+        "task_success": false,
+        "success_detail": "final_url='https://automationexercise.com/' contains '/view_cart'? False",
+        "final_url": "https://automationexercise.com/",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      }
+    ],
+    "final_task_success": false
+  }
+]

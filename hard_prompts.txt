@@ -1,0 +1,12 @@
+go to the-internet.herokuapp.com/login, log in with tomsmith / SuperSecretPassword!, then click the logout button on the secure area page
+go to demoqa.com/automation-practice-form, fill in first name Vedant, last name Shah, email test@test.com, select the Sports hobby checkbox, and submit the form
+go to saucedemo.com, log in with standard_user / secret_sauce, add the first two products to the cart, then open the cart
+go to the-internet.herokuapp.com/checkboxes, make sure both checkboxes end up checked
+go to en.wikipedia.org, search for a topic, and if a disambiguation page appears pick the first listed meaning, otherwise just read the article
+go to the-internet.herokuapp.com/dynamic_loading/2, start the loading, wait until the hidden text finishes loading, then read it
+go to demoqa.com/select-menu and choose 'Group 2, option 1' from the multi-level select menu
+go to news.ycombinator.com, go to page 2 of the listings, and open the top story there
+go to the-internet.herokuapp.com/entry_ad, dismiss the popup ad that appears, then read the page content
+go to amazon.com, search for wireless mouse, filter to 4 stars and up, and open the first result
+go to the-internet.herokuapp.com/nested_frames, read the text inside the middle frame
+go to a news site, accept the cookie consent banner if one appears, then open the top headline

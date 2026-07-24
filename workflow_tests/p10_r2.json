@@ -1,0 +1,67 @@
+{
+  "sentence": "go to amazon.com, search for wireless mouse, filter to 4 stars and up, and open the first result",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://www.amazon.com/"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Amazon Homepage",
+      "description": "Search for 'wireless mouse' on Amazon.",
+      "triggers": [
+        "If the current URL contains amazon.com",
+        "If a search input with placeholder 'Search Amazon' is visible"
+      ],
+      "actions": [
+        "Type 'wireless mouse' into the search input with placeholder 'Search Amazon'",
+        "Press Enter"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Search Results Page",
+      "description": "Apply the '4 Stars & Up' filter to the search results.",
+      "triggers": [
+        "If the current URL contains amazon.com/s?k=wireless+mouse",
+        "If a link or button with text '4 Stars & Up' is visible"
+      ],
+      "actions": [
+        "Click the link or button with text '4 Stars & Up'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Filtered Search Results Page",
+      "description": "Open the first product from the filtered search results.",
+      "triggers": [
+        "If the current URL contains amazon.com/s?k=wireless+mouse",
+        "If a link or button with text '4 Stars & Up' is visibly selected or highlighted",
+        "If the first product link in the search results is visible"
+      ],
+      "actions": [
+        "Click the first product link in the search results"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Product Detail Page",
+      "description": "Confirm that the product detail page has loaded.",
+      "triggers": [
+        "If the current URL contains amazon.com/dp/",
+        "If a heading with text 'About this item' or 'Product information' is visible"
+      ],
+      "actions": [
+        "Terminate: The first product from the filtered search results has been opened."
+      ],
+      "end_state": "Product page opened"
+    }
+  ],
+  "issues": []
+}

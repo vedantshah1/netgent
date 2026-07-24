@@ -1,0 +1,2 @@
+{"type": "run_start", "run_id": "20260721_075002_62b56e", "ts": 1784620202.04029, "iso": "2026-07-21T07:50:02.040293", "python": "3.11.15", "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.41", "meta": {"experiment": "thinking_budget", "thinking_budget": 512, "model": "gemini-2.5-flash", "browser": true}}
+{"type": "run_end", "run_id": "20260721_075002_62b56e", "ts": 1784621410.7577155, "iso": "2026-07-21T08:10:10.757723", "n_llm_calls": 10, "n_attempts": 10, "summary": {}}

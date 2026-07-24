@@ -1,0 +1,66 @@
+{
+  "sentence": "go to demoqa.com/automation-practice-form, fill in first name Vedant, last name Shah, email test@test.com, select the Sports hobby checkbox, and submit the form",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://demoqa.com/automation-practice-form"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Practice Form Page - Filling Text Fields",
+      "description": "Fill in the first name, last name, and email fields on the form.",
+      "triggers": [
+        "If the current URL contains demoqa.com/automation-practice-form",
+        "If a text input with placeholder 'First Name' is visible"
+      ],
+      "actions": [
+        "Type 'Vedant' into the input with placeholder 'First Name'",
+        "Type 'Shah' into the input with placeholder 'Last Name'",
+        "Type 'test@test.com' into the input with placeholder 'name@example.com'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Practice Form Page - Selecting Hobby",
+      "description": "Select the 'Sports' hobby checkbox.",
+      "triggers": [
+        "If the current URL contains demoqa.com/automation-practice-form",
+        "If a checkbox labeled 'Sports' is visible and not checked"
+      ],
+      "actions": [
+        "Click the checkbox labeled 'Sports'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Practice Form Page - Submitting Form",
+      "description": "Click the submit button to complete the form.",
+      "triggers": [
+        "If the current URL contains demoqa.com/automation-practice-form",
+        "If a button labeled 'Submit' is visible"
+      ],
+      "actions": [
+        "Click the button labeled 'Submit'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Form Submission Confirmed",
+      "description": "Verify that the form was submitted successfully by checking for the confirmation dialog.",
+      "triggers": [
+        "If a modal dialog with title 'Thanks for submitting the form' is visible"
+      ],
+      "actions": [
+        "Terminate: Form submitted successfully"
+      ],
+      "end_state": "Form submitted"
+    }
+  ],
+  "issues": []
+}

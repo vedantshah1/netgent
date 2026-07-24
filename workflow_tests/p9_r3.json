@@ -1,0 +1,42 @@
+{
+  "sentence": "go to the-internet.herokuapp.com/entry_ad, dismiss the popup ad that appears, then read the page content",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://the-internet.herokuapp.com/entry_ad"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Entry Ad Page with Modal",
+      "description": "The entry ad page has loaded, and the modal popup is visible.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/entry_ad",
+        "If an element with ID 'modal' is visible"
+      ],
+      "actions": [
+        "Click a button with text 'Close' inside the element with ID 'modal'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Ad Dismissed, Content Visible",
+      "description": "The popup ad has been dismissed, and the main page content is now visible and readable.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/entry_ad",
+        "If an element with ID 'modal' is not visible",
+        "If an h3 element with text 'This is a modal window' is visible"
+      ],
+      "actions": [
+        "Terminate: The ad has been dismissed and the page content is visible."
+      ],
+      "end_state": "Ad dismissed, content visible"
+    }
+  ],
+  "issues": []
+}

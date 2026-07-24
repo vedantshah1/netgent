@@ -1,0 +1,66 @@
+{
+  "sentence": "go to en.wikipedia.org, search for a topic, and if a disambiguation page appears pick the first listed meaning, otherwise just read the article",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://en.wikipedia.org/"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Wikipedia Homepage",
+      "description": "Search for a generic topic on Wikipedia.",
+      "triggers": [
+        "If the current URL contains en.wikipedia.org/wiki/Main_Page",
+        "If a search box with placeholder 'Search Wikipedia' is visible"
+      ],
+      "actions": [
+        "Click the search box",
+        "Type 'topic' into the search box",
+        "Press Enter"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Disambiguation Page",
+      "description": "If the search led to a disambiguation page, click the first listed meaning.",
+      "triggers": [
+        "If the current URL contains en.wikipedia.org/wiki/",
+        "If the page title contains '(disambiguation)'",
+        "If a div with class 'mw-disambig' is visible"
+      ],
+      "actions": [
+        "Click the first link that is a direct child of a list item (<li>) on the page"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Article Page",
+      "description": "The article page is loaded, either directly after search or after disambiguation.",
+      "triggers": [
+        "If the current URL contains en.wikipedia.org/wiki/",
+        "If a main heading (<h1>) is visible",
+        "If the page title does NOT contain '(disambiguation)'"
+      ],
+      "actions": [],
+      "end_state": "Article loaded, disambiguation handled if present."
+    }
+  ],
+  "issues": [
+    {
+      "level": "WARN",
+      "state": "On Article Page",
+      "message": "Empty actions list, but the name/description doesn't read like a wait state. If this wasn't intentional, NetGent will do nothing here and just re-poll the same triggers."
+    },
+    {
+      "level": "WARN",
+      "state": "On Article Page",
+      "message": "Last state's actions don't mention 'Terminate'. NetGent's web agent needs an explicit terminate instruction to stop cleanly."
+    }
+  ]
+}

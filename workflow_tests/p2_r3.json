@@ -1,0 +1,88 @@
+{
+  "sentence": "go to demoqa.com/automation-practice-form, fill in first name Vedant, last name Shah, email test@test.com, select the Sports hobby checkbox, and submit the form",
+  "workflow": [
+    {
+      "name": "Start Navigation",
+      "description": "Navigate to the DemoQA automation practice form page.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://demoqa.com/automation-practice-form"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Fill First Name",
+      "description": "Enter the first name into the corresponding field.",
+      "triggers": [
+        "If the current URL contains demoqa.com/automation-practice-form",
+        "If an input field with placeholder 'First Name' is visible"
+      ],
+      "actions": [
+        "Type 'Vedant' into the input with placeholder 'First Name'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Fill Last Name",
+      "description": "Enter the last name into the corresponding field.",
+      "triggers": [
+        "If the current URL contains demoqa.com/automation-practice-form",
+        "If an input field with placeholder 'Last Name' is visible"
+      ],
+      "actions": [
+        "Type 'Shah' into the input with placeholder 'Last Name'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Fill Email",
+      "description": "Enter the email address into the corresponding field.",
+      "triggers": [
+        "If the current URL contains demoqa.com/automation-practice-form",
+        "If an input field with placeholder 'name@example.com' is visible"
+      ],
+      "actions": [
+        "Type 'test@test.com' into the input with placeholder 'name@example.com'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Select Sports Hobby",
+      "description": "Select the 'Sports' checkbox for hobbies.",
+      "triggers": [
+        "If the current URL contains demoqa.com/automation-practice-form",
+        "If a checkbox labeled 'Sports' is visible"
+      ],
+      "actions": [
+        "Click the checkbox labeled 'Sports'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Submit Form",
+      "description": "Click the submit button to send the form data.",
+      "triggers": [
+        "If the current URL contains demoqa.com/automation-practice-form",
+        "If a button with text 'Submit' is visible"
+      ],
+      "actions": [
+        "Click the button with text 'Submit'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Form Submitted Successfully",
+      "description": "Verify that the form submission was successful by checking for the confirmation modal.",
+      "triggers": [
+        "If a modal dialog with title 'Thanks for submitting the form' is visible"
+      ],
+      "actions": [
+        "Terminate: Form filled and submitted successfully"
+      ],
+      "end_state": "Form submitted"
+    }
+  ],
+  "issues": []
+}

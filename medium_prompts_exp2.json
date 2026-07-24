@@ -1,0 +1,27 @@
+[
+  {
+    "sentence": "go to the-internet.herokuapp.com/login, log in with username tomsmith and password SuperSecretPassword!, then click Logout and confirm you are returned to the login page",
+    "success": {"type": "text_contains", "value": "You logged out of the secure area"},
+    "notes": "extends the already-working login flow with a second phase (logout) on a NEW page -- tests whether the planner can chain two dependent multi-page transitions instead of stopping at the first goal."
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/dynamic_controls, click the Remove button to remove the checkbox, and wait for confirmation that it is gone",
+    "success": {"type": "text_contains", "value": "It's gone"},
+    "notes": "AJAX-delayed DOM mutation (~5s) with no URL change -- needs a genuine wait/observe state (empty-actions pattern) keyed on a text change, not a navigation."
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/add_remove_elements/, click 'Add Element', and confirm a Delete button appears",
+    "success": {"type": "text_contains", "value": "Delete"},
+    "notes": "success is a DOM-only change (no URL change at all) -- the trigger has to be keyed on a visible element appearing, which is a harder recognition problem than a URL substring."
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/hovers, hover over the first user's image to reveal their profile link, then click it and confirm you land on their profile page",
+    "success": {"type": "url_regex", "value": "/users/\\d"},
+    "notes": "requires a hover-to-reveal interaction before the click target even exists -- hover isn't demonstrated in the planner's few-shot example, so this tests whether the action vocabulary generalizes to an unseen interaction type."
+  },
+  {
+    "sentence": "go to automationexercise.com, search for 'dress', add the first result to your cart, then view the cart",
+    "success": {"type": "url_contains", "value": "/view_cart"},
+    "notes": "closest real analog to the Amazon search-and-cart idea -- multi-page (home -> search results -> cart popup -> cart page), a real third-party site rather than a controlled fixture, hardest in the set."
+  }
+]

@@ -1,0 +1,3 @@
+condition,n,struct_valid_rate,parse_rate,mean_states,statecount_stability,task_success_rate
+few-shot,36,1.0,1.0,3.8055555555555554,0.5833333333333334,
+zero-shot,36,0.9722222222222222,0.9722222222222222,3.4571428571428573,0.5833333333333334,0.0

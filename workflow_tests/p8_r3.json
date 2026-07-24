@@ -1,0 +1,53 @@
+{
+  "sentence": "go to news.ycombinator.com, go to page 2 of the listings, and open the top story there",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://news.ycombinator.com/"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Hacker News Homepage",
+      "description": "Locate and click the 'more' link to navigate to the next page of listings.",
+      "triggers": [
+        "If the current URL contains news.ycombinator.com",
+        "If a link with text 'more' is visible"
+      ],
+      "actions": [
+        "Click the link with text 'more'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Page 2 of Listings",
+      "description": "Identify the top story on page 2 and click its link.",
+      "triggers": [
+        "If the current URL contains news.ycombinator.com/news?p=2",
+        "If a link with text 'more' is visible"
+      ],
+      "actions": [
+        "Click the first link with class 'titlelink'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Story Page Opened",
+      "description": "Confirm that the top story from page 2 has been successfully opened.",
+      "triggers": [
+        "If the current URL does NOT contain news.ycombinator.com/news",
+        "If the page title does NOT contain 'Hacker News'"
+      ],
+      "actions": [
+        "Terminate: Top story from page 2 opened"
+      ],
+      "end_state": "Top story from page 2 opened"
+    }
+  ],
+  "issues": []
+}

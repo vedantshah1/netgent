@@ -1,0 +1,55 @@
+{
+  "sentence": "go to en.wikipedia.org, search for a topic, and if a disambiguation page appears pick the first listed meaning, otherwise just read the article",
+  "workflow": [
+    {
+      "name": "Start Browsing",
+      "description": "Begin by navigating to Wikipedia from a fresh tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://en.wikipedia.org/"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Search for Topic",
+      "description": "Locate the search bar on the Wikipedia homepage and enter the desired topic.",
+      "triggers": [
+        "If the current URL contains en.wikipedia.org/wiki/Main_Page",
+        "If a search box with placeholder 'Search Wikipedia' is visible"
+      ],
+      "actions": [
+        "Type 'a topic' into the search box with placeholder 'Search Wikipedia'",
+        "Press Enter"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Handle Disambiguation",
+      "description": "If a disambiguation page is encountered, click the first listed meaning to proceed to the specific article.",
+      "triggers": [
+        "If the current URL contains '(disambiguation)'",
+        "If the page title contains 'disambiguation'"
+      ],
+      "actions": [
+        "Click the first link in the main content area"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Read Article",
+      "description": "The article page has been reached, either directly or after resolving a disambiguation.",
+      "triggers": [
+        "If the current URL contains en.wikipedia.org/wiki/",
+        "If the current URL does NOT contain '(disambiguation)'",
+        "If a main article heading (e.g., H1) is visible"
+      ],
+      "actions": [
+        "Terminate: The article has been reached."
+      ],
+      "end_state": "Article reached"
+    }
+  ],
+  "issues": []
+}

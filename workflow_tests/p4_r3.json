@@ -1,0 +1,43 @@
+{
+  "sentence": "go to the-internet.herokuapp.com/checkboxes, make sure both checkboxes end up checked",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://the-internet.herokuapp.com/checkboxes"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Checkboxes Page",
+      "description": "Ensure both checkboxes are checked.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/checkboxes",
+        "If a checkbox element is visible"
+      ],
+      "actions": [
+        "Click checkbox 1 if it is not checked",
+        "Click checkbox 2 if it is not checked"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Checkboxes Confirmed Checked",
+      "description": "Verify that both checkboxes are now in the checked state.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/checkboxes",
+        "If checkbox 1 is checked",
+        "If checkbox 2 is checked"
+      ],
+      "actions": [
+        "Terminate: Both checkboxes are checked"
+      ],
+      "end_state": "Both checkboxes are checked"
+    }
+  ],
+  "issues": []
+}

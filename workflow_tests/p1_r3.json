@@ -1,0 +1,56 @@
+{
+  "sentence": "go to the-internet.herokuapp.com/login, log in with tomsmith / SuperSecretPassword!, then click the logout button on the secure area page",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://the-internet.herokuapp.com/login"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Login Page",
+      "description": "Enter username and password to log in.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/login",
+        "If a heading with text 'Login Page' is visible"
+      ],
+      "actions": [
+        "Type 'tomsmith' into the input field with name 'username'",
+        "Type 'SuperSecretPassword!' into the input field with name 'password'",
+        "Click the button with text 'Login'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Secure Area Page",
+      "description": "Successfully logged in, now click the logout button.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/secure",
+        "If a heading with text 'Secure Area' is visible",
+        "If a button with text 'Logout' is visible"
+      ],
+      "actions": [
+        "Click the button with text 'Logout'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Logged Out Confirmation",
+      "description": "Confirm that the logout action was successful.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/login",
+        "If a div with class 'flash success' and text 'You logged out of the secure area!' is visible"
+      ],
+      "actions": [
+        "Terminate: Successfully logged out."
+      ],
+      "end_state": "Logged out successfully"
+    }
+  ],
+  "issues": []
+}

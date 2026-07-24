@@ -1,0 +1,21 @@
+[
+  {
+    "sentence": "go to saucedemo.com, log in with username standard_user and password secret_sauce, add the Sauce Labs Backpack and the Sauce Labs Bike Light to the cart, open the shopping cart, click checkout, enter first name Test, last name User, postal code 12345, continue, and then finish the order",
+    "success": {
+      "type": "text_contains",
+      "value": "Thank you for your order"
+    },
+    "expected_states": 8,
+    "notes": "Canonical 8-phase e-commerce funnel: fresh tab -> login -> inventory (two adds) -> cart -> checkout step one -> form fill -> overview -> complete. Every phase gates the next, and the success marker only appears on the final page, so partial completion cannot be mistaken for success."
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/login, log in with username tomsmith and password SuperSecretPassword!, click Logout, then go to the-internet.herokuapp.com/dynamic_controls, click the Enable button, wait for the input field to become enabled, and type hello into it",
+    "success": {
+      "type": "text_contains",
+      "value": "It's enabled"
+    },
+    "expected_states": 8,
+    "notes": "Three dependent phases on a controlled fixture: auth in, auth out, then a fresh async interaction on a different page. Requires a genuine wait/observe state between Enable and typing. Crisp single success marker that only appears after the async enable completes."
+  }
+]
+

@@ -1,0 +1,3 @@
+condition,n,task_success_rate,mean_run_latency_s,median_run_latency_s,traces_captured
+stock,1,0.0,56.13147974014282,56.13147974014282,0
+human,1,1.0,199.63437128067017,199.63437128067017,1

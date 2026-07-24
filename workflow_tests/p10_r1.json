@@ -1,0 +1,65 @@
+{
+  "sentence": "go to amazon.com, search for wireless mouse, filter to 4 stars and up, and open the first result",
+  "workflow": [
+    {
+      "name": "Start Browsing",
+      "description": "Start from a fresh tab and navigate to Amazon.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://www.amazon.com/"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Amazon Homepage",
+      "description": "Locate the search bar and search for 'wireless mouse'.",
+      "triggers": [
+        "If the current URL contains amazon.com",
+        "If a search input with placeholder 'Search Amazon' is visible"
+      ],
+      "actions": [
+        "Type 'wireless mouse' into the search input with placeholder 'Search Amazon'",
+        "Press Enter"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Search Results Page",
+      "description": "Apply the '4 Stars & Up' filter to the search results.",
+      "triggers": [
+        "If the current URL contains amazon.com/s?k=wireless+mouse",
+        "If a link or element with text '4 Stars & Up' is visible"
+      ],
+      "actions": [
+        "Click the link or element with text '4 Stars & Up'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Filtered Search Results Page",
+      "description": "Open the first product result after filtering.",
+      "triggers": [
+        "If the current URL contains amazon.com/s?k=wireless+mouse",
+        "If the current URL contains rh=p_72%3A1248879011"
+      ],
+      "actions": [
+        "Click the first product title link in the search results"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Product Page",
+      "description": "Confirm that the product page has loaded.",
+      "triggers": [
+        "If the current URL contains amazon.com/dp/"
+      ],
+      "actions": [
+        "Terminate: The first wireless mouse product page (4 stars & up) has been opened."
+      ],
+      "end_state": "Product page opened"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,3 @@
+{"type": "run_start", "run_id": "20260721_042931_05aff6", "ts": 1784608171.5905848, "iso": "2026-07-21T04:29:31.590586", "python": "3.11.15", "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.41", "meta": {"experiment": "end_to_end", "n_prompts": 5}}
+{"type": "run_start", "run_id": "20260721_053030_adbecf", "ts": 1784611830.8509808, "iso": "2026-07-21T05:30:30.850981", "python": "3.11.15", "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.41", "meta": {"experiment": "end_to_end", "n_prompts": 5}}
+{"type": "run_start", "run_id": "20260721_053733_5257c3", "ts": 1784612253.6001534, "iso": "2026-07-21T05:37:33.600154", "python": "3.11.15", "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.41", "meta": {"experiment": "end_to_end", "n_prompts": 5}}

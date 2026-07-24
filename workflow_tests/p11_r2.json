@@ -1,0 +1,35 @@
+{
+  "sentence": "go to the-internet.herokuapp.com/nested_frames, read the text inside the middle frame",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://the-internet.herokuapp.com/nested_frames"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Nested Frames Page",
+      "description": "Locate the middle frame and read its text content.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/nested_frames",
+        "If an iframe with name 'frame-middle' is visible"
+      ],
+      "actions": [
+        "Read text from frame with name 'frame-middle'"
+      ],
+      "end_state": "Text from middle frame read"
+    }
+  ],
+  "issues": [
+    {
+      "level": "WARN",
+      "state": "On Nested Frames Page",
+      "message": "Last state's actions don't mention 'Terminate'. NetGent's web agent needs an explicit terminate instruction to stop cleanly."
+    }
+  ]
+}

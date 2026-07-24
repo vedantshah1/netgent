@@ -1,0 +1,141 @@
+==============================================================================
+NETGENT PLANNER -- RESULTS REPORT
+==============================================================================
+LLM calls recorded : 72
+Attempts recorded  : 54
+
+------------------------------------------------------------------------------
+RELIABILITY
+------------------------------------------------------------------------------
+  Attempts                : 54
+  PASS (parsed, 0 lint errors): 54/54  (100.0%)
+  Parsed successfully     : 54/54  (100.0%)
+  Needed JSON fixup retry : 0/54  (0.0%)   <- how often the model emits bad JSON first try
+
+  Lint issue frequency (across all attempts):
+      NO_TERMINATE_ACTION       7
+      EMPTY_ACTIONS             6
+
+  Attempts by stage: GENERATE=54
+
+------------------------------------------------------------------------------
+LATENCY
+------------------------------------------------------------------------------
+  stage                    n     mean   median      p95      min      max
+  GENERATE                72     4.74     5.00    13.02     0.08    15.50
+  ALL CALLS               72     4.74     5.00    13.02     0.08    15.50
+
+  End-to-end per attempt: mean=6.29s  median=5.56s  p95=13.49s
+
+------------------------------------------------------------------------------
+TOKENS
+------------------------------------------------------------------------------
+  Input tokens  : total=57,162  mean/call=1058.6  max=1075
+  Output tokens : total=79,066  mean/call=1464.2  max=3807
+  Total tokens  : 136,228
+  Est. cost     : $0.2148  (at $0.3/1M in, $2.5/1M out -- VERIFY current pricing before citing)
+  Est. cost per attempt: $0.00398
+  Finish reasons: STOP=54
+
+------------------------------------------------------------------------------
+WORKFLOW SHAPE
+------------------------------------------------------------------------------
+  State count: mean=3.6  median=4.0  min=2  max=7
+  Distribution: {2: 5, 3: 21, 4: 18, 5: 9, 7: 1}
+  Triggers/workflow: mean=6.5   Actions/workflow: mean=4.3
+
+------------------------------------------------------------------------------
+CONSISTENCY (identical prompt -> identical workflow?)
+------------------------------------------------------------------------------
+
+  "go to wikipedia, search for bezier curves, and scroll all the wa..."  (n=3)
+    state counts     : [4, 5, 4]
+    identical naming : 1/3
+    mean Jaccard sim : 0.250   (1.0 = same state names every time)
+
+  "go to the-internet.herokuapp.com/login, log in with username 'to..."  (n=3)
+    state counts     : [3, 3, 3]
+    identical naming : 1/3
+    mean Jaccard sim : 0.500   (1.0 = same state names every time)
+
+  "go to duckduckgo.com and search for netgent browser automation"  (n=3)
+    state counts     : [3, 3, 3]
+    identical naming : 1/3
+    mean Jaccard sim : 0.500   (1.0 = same state names every time)
+
+  "go to news.ycombinator.com and click on the first story link"  (n=3)
+    state counts     : [3, 3, 3]
+    identical naming : 1/3
+    mean Jaccard sim : 0.350   (1.0 = same state names every time)
+
+  "go to the-internet.herokuapp.com/dropdown and select option 2 fr..."  (n=3)
+    state counts     : [3, 3, 3]
+    identical naming : 2/3
+    mean Jaccard sim : 0.750   (1.0 = same state names every time)
+
+  "go to example.com and confirm the page title is visible"  (n=3)
+    state counts     : [2, 2, 2]
+    identical naming : 2/3
+    mean Jaccard sim : 0.667   (1.0 = same state names every time)
+
+  "go to the-internet.herokuapp.com/login, log in with tomsmith / S..."  (n=3)
+    state counts     : [4, 4, 4]
+    identical naming : 1/3
+    mean Jaccard sim : 0.600   (1.0 = same state names every time)
+
+  "go to demoqa.com/automation-practice-form, fill in first name Ve..."  (n=3)
+    state counts     : [5, 5, 7]
+    identical naming : 1/3
+    mean Jaccard sim : 0.056   (1.0 = same state names every time)
+
+  "go to saucedemo.com, log in with standard_user / secret_sauce, a..."  (n=3)
+    state counts     : [5, 5, 5]
+    identical naming : 1/3
+    mean Jaccard sim : 0.214   (1.0 = same state names every time)
+
+  "go to the-internet.herokuapp.com/checkboxes, make sure both chec..."  (n=3)
+    state counts     : [4, 3, 3]
+    identical naming : 1/3
+    mean Jaccard sim : 0.283   (1.0 = same state names every time)
+
+  "go to en.wikipedia.org, search for a topic, and if a disambiguat..."  (n=3)
+    state counts     : [4, 4, 4]
+    identical naming : 2/3
+    mean Jaccard sim : 0.500   (1.0 = same state names every time)
+
+  "go to the-internet.herokuapp.com/dynamic_loading/2, start the lo..."  (n=3)
+    state counts     : [4, 3, 4]
+    identical naming : 1/3
+    mean Jaccard sim : 0.367   (1.0 = same state names every time)
+
+  "go to demoqa.com/select-menu and choose 'Group 2, option 1' from..."  (n=3)
+    state counts     : [3, 4, 3]
+    identical naming : 2/3
+    mean Jaccard sim : 0.583   (1.0 = same state names every time)
+
+  "go to news.ycombinator.com, go to page 2 of the listings, and op..."  (n=3)
+    state counts     : [4, 4, 4]
+    identical naming : 1/3
+    mean Jaccard sim : 0.467   (1.0 = same state names every time)
+
+  "go to the-internet.herokuapp.com/entry_ad, dismiss the popup ad ..."  (n=3)
+    state counts     : [3, 3, 3]
+    identical naming : 1/3
+    mean Jaccard sim : 0.200   (1.0 = same state names every time)
+
+  "go to amazon.com, search for wireless mouse, filter to 4 stars a..."  (n=3)
+    state counts     : [5, 5, 5]
+    identical naming : 2/3
+    mean Jaccard sim : 0.714   (1.0 = same state names every time)
+
+  "go to the-internet.herokuapp.com/nested_frames, read the text in..."  (n=3)
+    state counts     : [3, 2, 2]
+    identical naming : 1/3
+    mean Jaccard sim : 0.667   (1.0 = same state names every time)
+
+  "go to a news site, accept the cookie consent banner if one appea..."  (n=3)
+    state counts     : [4, 4, 4]
+    identical naming : 1/3
+    mean Jaccard sim : 0.600   (1.0 = same state names every time)
+
+==============================================================================

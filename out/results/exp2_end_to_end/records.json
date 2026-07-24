@@ -1,0 +1,359 @@
+[
+  {
+    "sentence": "go to example.com",
+    "success_condition": {
+      "type": "url_contains",
+      "value": "example.com"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/"
+            ],
+            "actions": [
+              "Navigate to https://example.com/"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Example.com",
+            "description": "Confirm navigation to example.com was successful.",
+            "triggers": [
+              "If the current URL is https://example.com/"
+            ],
+            "actions": [
+              "Terminate: Successfully navigated to example.com"
+            ],
+            "end_state": "Navigated to example.com"
+          }
+        ],
+        "latency_s": 2.43641996383667
+      },
+      "lint": {
+        "issues": [],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": true,
+        "success_detail": "final_url='https://example.com/' contains 'example.com'? True",
+        "final_url": "https://example.com/",
+        "stopgap_failed": false,
+        "stopgap_class": "UNKNOWN"
+      }
+    ],
+    "final_task_success": true
+  },
+  {
+    "sentence": "go to en.wikipedia.org, search for Bezier curve, and open the article",
+    "success_condition": {
+      "type": "url_contains",
+      "value": "/wiki/B"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/"
+            ],
+            "actions": [
+              "Navigate to https://en.wikipedia.org/"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Wikipedia Homepage",
+            "description": "Search for a specific topic on Wikipedia.",
+            "triggers": [
+              "If the current URL contains en.wikipedia.org/wiki/Main_Page",
+              "If a search box with placeholder 'Search Wikipedia' is visible"
+            ],
+            "actions": [
+              "Type 'Bezier curve' into the search box with placeholder 'Search Wikipedia'",
+              "Press Enter"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Search Results Or Article Page",
+            "description": "Confirm the search navigated to the Bezier curve article page, or click the link if on a search results page.",
+            "triggers": [
+              "If the current URL contains en.wikipedia.org/wiki/Bezier_curve",
+              "If the current URL contains en.wikipedia.org/wiki/Special:Search"
+            ],
+            "actions": [
+              "If the current URL contains en.wikipedia.org/wiki/Special:Search, click the link with text 'Bezier curve'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Bezier Curve Article Page",
+            "description": "The target article is open, confirming successful navigation.",
+            "triggers": [
+              "If the current URL contains en.wikipedia.org/wiki/Bezier_curve",
+              "If the page title contains 'Bezier curve - Wikipedia'"
+            ],
+            "actions": [
+              "Terminate: The 'Bezier curve' article is open."
+            ],
+            "end_state": "Article opened"
+          }
+        ],
+        "latency_s": 11.785681962966919
+      },
+      "lint": {
+        "issues": [],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": false,
+        "success_detail": "final_url='https://en.wikipedia.org/wiki/Main_Page' contains '/wiki/B'? False",
+        "final_url": "https://en.wikipedia.org/wiki/Main_Page",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 2,
+        "task_success": true,
+        "success_detail": "final_url='https://en.wikipedia.org/wiki/B%C3%A9zier_curve' contains '/wiki/B'? True",
+        "final_url": "https://en.wikipedia.org/wiki/B%C3%A9zier_curve",
+        "stopgap_failed": false,
+        "stopgap_class": "UNKNOWN"
+      }
+    ],
+    "final_task_success": true
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/login and log in with username tomsmith and password SuperSecretPassword!",
+    "success_condition": {
+      "type": "url_contains",
+      "value": "/secure"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/"
+            ],
+            "actions": [
+              "Navigate to https://the-internet.herokuapp.com/login"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Login Page",
+            "description": "Enter the provided username and password into the login form.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/login",
+              "If an input field with id 'username' is visible",
+              "If an input field with id 'password' is visible"
+            ],
+            "actions": [
+              "Type 'tomsmith' into the input field with id 'username'",
+              "Type 'SuperSecretPassword!' into the input field with id 'password'",
+              "Click the button with text 'Login'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Secure Area Page",
+            "description": "Verify that the login was successful and the user is on the secure area page.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/secure",
+              "If a div with class 'flash success' contains text 'You logged into a secure area!'"
+            ],
+            "actions": [
+              "Terminate: Successfully logged in."
+            ],
+            "end_state": "Login successful"
+          }
+        ],
+        "latency_s": 4.449476480484009
+      },
+      "lint": {
+        "issues": [],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": false,
+        "success_detail": "final_url='https://the-internet.herokuapp.com/login' contains '/secure'? False",
+        "final_url": "https://the-internet.herokuapp.com/login",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      },
+      {
+        "attempt": 2,
+        "task_success": false,
+        "success_detail": "final_url='https://the-internet.herokuapp.com/login' contains '/secure'? False",
+        "final_url": "https://the-internet.herokuapp.com/login",
+        "stopgap_failed": true,
+        "stopgap_class": "EMPTY_TRIGGERS"
+      }
+    ],
+    "final_task_success": false
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/dynamic_loading/2, click Start, and wait for the hidden text to appear",
+    "success_condition": {
+      "type": "text_contains",
+      "value": "Hello World"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/"
+            ],
+            "actions": [
+              "Navigate to https://the-internet.herokuapp.com/dynamic_loading/2"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Dynamic Loading Page",
+            "description": "Click the 'Start' button to initiate the loading process.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/dynamic_loading/2",
+              "If a button with text 'Start' is visible"
+            ],
+            "actions": [
+              "Click the button with text 'Start'"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "Waiting for Hidden Text",
+            "description": "Waiting for the hidden text to appear after clicking 'Start'.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/dynamic_loading/2",
+              "If a div with id 'loading' is visible"
+            ],
+            "actions": [],
+            "end_state": ""
+          },
+          {
+            "name": "Hidden Text Appeared",
+            "description": "The hidden text has appeared, indicating the task is complete.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/dynamic_loading/2",
+              "If a div with id 'finish' is visible"
+            ],
+            "actions": [
+              "Terminate: task complete, hidden text appeared"
+            ],
+            "end_state": "Hidden text appeared"
+          }
+        ],
+        "latency_s": 5.906877517700195
+      },
+      "lint": {
+        "issues": [
+          {
+            "level": "INFO",
+            "state": "Waiting for Hidden Text",
+            "message": "Empty actions with a wait/verification-sounding name -- looks like an intentional 'sit here until something external changes' state. Confirm that's what you meant."
+          }
+        ],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": true,
+        "success_detail": "page text contains 'Hello World'? True  (url='https://the-internet.herokuapp.com/dynamic_loading/2')",
+        "final_url": "https://the-internet.herokuapp.com/dynamic_loading/2",
+        "stopgap_failed": true,
+        "stopgap_class": "TIMEOUT"
+      }
+    ],
+    "final_task_success": true
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/checkboxes and make sure both checkboxes are checked",
+    "success_condition": {
+      "type": "text_contains",
+      "value": "checkboxes"
+    },
+    "stages": {
+      "generate": {
+        "workflow": [
+          {
+            "name": "On Browser Home Page",
+            "description": "Start the process from a fresh browser tab.",
+            "triggers": [
+              "If the current URL is chrome://new-tab-page/"
+            ],
+            "actions": [
+              "Navigate to https://the-internet.herokuapp.com/checkboxes"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "On Checkboxes Page - Ensure Checked",
+            "description": "Identify the checkboxes and click any that are not checked.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/checkboxes",
+              "If a heading with text 'Checkboxes' is visible"
+            ],
+            "actions": [
+              "If checkbox 1 is not checked, click checkbox 1",
+              "If checkbox 2 is not checked, click checkbox 2"
+            ],
+            "end_state": ""
+          },
+          {
+            "name": "Both Checkboxes Confirmed Checked",
+            "description": "Verify that both checkboxes are now in a checked state.",
+            "triggers": [
+              "If the current URL contains the-internet.herokuapp.com/checkboxes",
+              "If checkbox 1 is checked",
+              "If checkbox 2 is checked"
+            ],
+            "actions": [
+              "Terminate: Both checkboxes are now checked"
+            ],
+            "end_state": "Both checkboxes are checked"
+          }
+        ],
+        "latency_s": 3.6030492782592773
+      },
+      "lint": {
+        "issues": [],
+        "n_errors": 0
+      }
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "task_success": true,
+        "success_detail": "page text contains 'checkboxes'? True  (url='https://the-internet.herokuapp.com/checkboxes')",
+        "final_url": "https://the-internet.herokuapp.com/checkboxes",
+        "stopgap_failed": true,
+        "stopgap_class": "TIMEOUT"
+      }
+    ],
+    "final_task_success": true
+  }
+]

@@ -1,0 +1,1 @@
+{"type": "run_start", "run_id": "20260724_003620_32d0d0", "ts": 1784853380.0639448, "iso": "2026-07-24T00:36:20.063945", "python": "3.11.15", "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.41", "meta": {"experiment": "controller_ab"}}

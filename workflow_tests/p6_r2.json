@@ -1,0 +1,41 @@
+{
+  "sentence": "go to the-internet.herokuapp.com/dynamic_loading/2, start the loading, wait until the hidden text finishes loading, then read it",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://the-internet.herokuapp.com/dynamic_loading/2"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Dynamic Loading Page",
+      "description": "Click the 'Start' button to initiate the dynamic loading.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/dynamic_loading/2",
+        "If a button with text 'Start' is visible"
+      ],
+      "actions": [
+        "Click the button with text 'Start'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Content Loaded and Visible",
+      "description": "Confirm the hidden text has finished loading and is now visible.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/dynamic_loading/2",
+        "If a div with text 'Hello World!' is visible"
+      ],
+      "actions": [
+        "Terminate: The hidden text 'Hello World!' is now visible."
+      ],
+      "end_state": "Hidden text loaded and read"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,57 @@
+{
+  "sentence": "go to the-internet.herokuapp.com/dynamic_loading/2, start the loading, wait until the hidden text finishes loading, then read it",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab and navigate to the target URL.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://the-internet.herokuapp.com/dynamic_loading/2"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Dynamic Loading Page",
+      "description": "Identify the dynamic loading page and initiate the loading process by clicking 'Start'.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/dynamic_loading/2",
+        "If a button with text 'Start' is visible"
+      ],
+      "actions": [
+        "Click the button with text 'Start'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Waiting for Content to Load",
+      "description": "Wait for the hidden text to finish loading, indicated by a 'Loading...' message.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/dynamic_loading/2",
+        "If a div with id 'loading' and text 'Loading...' is visible"
+      ],
+      "actions": [],
+      "end_state": ""
+    },
+    {
+      "name": "Content Loaded and Visible",
+      "description": "Confirm the hidden text 'Hello World!' has finished loading and is now visible.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/dynamic_loading/2",
+        "If the text 'Hello World!' is visible"
+      ],
+      "actions": [
+        "Terminate: The hidden text has loaded and is now readable."
+      ],
+      "end_state": "Hidden text loaded and visible"
+    }
+  ],
+  "issues": [
+    {
+      "level": "INFO",
+      "state": "Waiting for Content to Load",
+      "message": "Empty actions with a wait/verification-sounding name -- looks like an intentional 'sit here until something external changes' state. Confirm that's what you meant."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "sentence": "go to saucedemo.com, log in with username standard_user and password secret_sauce, add the Sauce Labs Backpack and the Sauce Labs Bike Light to the cart, open the shopping cart, click checkout, enter first name Test, last name User, postal code 12345, continue, and then finish the order",
+    "success": {"type": "text_contains", "value": "Thank you for your order"},
+    "expected_states": 8,
+    "notes": "Canonical 8-phase e-commerce funnel: fresh tab -> login -> inventory (two adds) -> cart -> checkout step one -> form fill -> overview -> complete. Every phase gates the next, and the success marker only appears on the final page, so partial completion cannot be mistaken for success."
+  },
+  {
+    "sentence": "go to saucedemo.com, log in with username standard_user and password secret_sauce, sort the products by price from low to high, add the two cheapest products to the cart, open the cart, remove one of them, and confirm exactly one item remains",
+    "success": {"type": "text_contains", "value": "1"},
+    "expected_states": 7,
+    "notes": "Adds a SORT (changes DOM order before selection) and a REMOVE (undoes prior state). Tests whether the planner can reason about post-conditions rather than a fixed click sequence. WARNING: the success condition here is weak -- 'text_contains 1' will match almost anything. Before running, replace it with a check on the cart badge specifically, or use url_contains '/cart.html' plus a manual read of the report. Flagged rather than silently shipped."
+  },
+  {
+    "sentence": "go to the-internet.herokuapp.com/login, log in with username tomsmith and password SuperSecretPassword!, click Logout, then go to the-internet.herokuapp.com/dynamic_controls, click the Enable button, wait for the input field to become enabled, and type hello into it",
+    "success": {"type": "text_contains", "value": "It's enabled"},
+    "expected_states": 8,
+    "notes": "Three dependent phases on a controlled fixture: auth in, auth out, then a fresh async interaction on a different page. Requires a genuine wait/observe state between Enable and typing. Crisp single success marker that only appears after the async enable completes."
+  },
+  {
+    "sentence": "go to automationexercise.com, search for 'dress', add the first two products in the results to your cart, view the cart, and confirm both products are listed",
+    "success": {"type": "url_contains", "value": "/view_cart"},
+    "expected_states": 7,
+    "notes": "Live third-party site, so it doubles as the bot-detection stressor. Two sequential adds each raise a modal that must be dismissed before the next add -- that modal cycle is what pushes this past 6 states. NOTE: the 5-state version of this task failed 3/3 in the medium battery, always stuck on the homepage with EMPTY_TRIGGERS. If it fails again here, check for a cookie-consent or ad overlay before blaming the planner."
+  },
+  {
+    "sentence": "go to saucedemo.com, log in with username standard_user and password secret_sauce, open the Sauce Labs Fleece Jacket product page, add it to the cart from that page, go back to the products list, open the shopping cart, click checkout, and fill in first name Test, last name User, postal code 12345",
+    "success": {"type": "url_contains", "value": "checkout-step-two"},
+    "expected_states": 8,
+    "notes": "Includes a drill-down into a product detail page and a BACK navigation, which the medium battery never exercised. Back-navigation is a distinct trigger problem: the URL returns to a previously-visited state, so a naive state machine can loop. Good stress test for trigger disambiguation."
+  }
+]

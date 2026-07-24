@@ -1,0 +1,55 @@
+{
+  "sentence": "go to the-internet.herokuapp.com/login, log in with tomsmith / SuperSecretPassword!, then click the logout button on the secure area page",
+  "workflow": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the process from a fresh browser tab.",
+      "triggers": [
+        "If the current URL is chrome://new-tab-page/"
+      ],
+      "actions": [
+        "Navigate to https://the-internet.herokuapp.com/login"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Login Page",
+      "description": "Enter username and password to log in.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/login",
+        "If an input field with id 'username' is visible"
+      ],
+      "actions": [
+        "Type 'tomsmith' into the input field with id 'username'",
+        "Type 'SuperSecretPassword!' into the input field with id 'password'",
+        "Click the button with text 'Login'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "On Secure Area Page",
+      "description": "Successfully logged in, now click the logout button.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/secure",
+        "If a button with text 'Logout' is visible"
+      ],
+      "actions": [
+        "Click the button with text 'Logout'"
+      ],
+      "end_state": ""
+    },
+    {
+      "name": "Logged Out Confirmation",
+      "description": "Confirmed logout and returned to the login page with a success message.",
+      "triggers": [
+        "If the current URL contains the-internet.herokuapp.com/login",
+        "If text 'You logged out of the secure area!' is visible"
+      ],
+      "actions": [
+        "Terminate: Successfully logged out."
+      ],
+      "end_state": "Successfully logged out"
+    }
+  ],
+  "issues": []
+}
